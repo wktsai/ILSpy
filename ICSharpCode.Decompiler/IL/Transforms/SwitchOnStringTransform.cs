@@ -649,7 +649,7 @@ namespace ICSharpCode.Decompiler.IL.Transforms
 					break;
 			}
 			// mcs: map sections without a value to the default section, if possible
-			if (!FixCasesWithoutValue(sections, stringValues))
+			if (!FixCasesWithoutValue(sections, stringValues, nullValueCaseBlock))
 				return false;
 			// switch contains case null:
 			if (nullValueCaseBlock != defaultBlock)
@@ -687,7 +687,7 @@ namespace ICSharpCode.Decompiler.IL.Transforms
 			return true;
 		}
 
-		bool FixCasesWithoutValue(List<SwitchSection> sections, List<(string, int)> stringValues)
+		bool FixCasesWithoutValue(List<SwitchSection> sections, List<(string, int)> stringValues, Block nullValueCaseBlock)
 		{
 			bool HasLabel(SwitchSection section)
 			{
@@ -701,6 +701,8 @@ namespace ICSharpCode.Decompiler.IL.Transforms
 			foreach (var section in sections)
 			{
 				if (section == defaultSection)
+					continue;
+				if (nullValueCaseBlock != null && section.Body.MatchBranch(nullValueCaseBlock))
 					continue;
 				if (section.Labels.Count() > defaultSection.Labels.Count())
 				{
@@ -734,6 +736,14 @@ namespace ICSharpCode.Decompiler.IL.Transforms
 				return false;
 			else if (possibleConflicts.Length == 1)
 			{
+				// There is no conflict, the nullValueCaseBlock already has an entry in the switch-table
+				if (possibleConflicts[0].Body.MatchBranch(nullValueCaseBlock))
+				{
+					// ... but not in the list of string values
+					stringValues.Add((null, (int)label.Values.First()));
+					return true;
+				}
+
 				if (possibleConflicts[0].Labels.Count() == 1)
 					return false; // cannot remove only label
 				possibleConflicts[0].Labels = possibleConflicts[0].Labels.ExceptWith(label);
