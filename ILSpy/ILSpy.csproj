@@ -63,6 +63,7 @@
     <Compile Include="..\ICSharpCode.Decompiler.PdbProvider.Cecil\MonoCecilDebugInfoProvider.cs" Link="DebugInfo\MonoCecilDebugInfoProvider.cs" />
     <EmbeddedResource Include="..\doc\ILSpyAboutPage.txt" />
     <EmbeddedResource Include="..\doc\ILSpyAboutPage_zh_Hans.txt" />
+    <EmbeddedResource Include="..\doc\ILSpyAboutPage_zh_Hant.txt" />
     <EmbeddedResource Include="..\doc\third-party-notices.txt" />
     <EmbeddedResource Include="..\doc\license.txt">
       <Link>license.txt</Link>

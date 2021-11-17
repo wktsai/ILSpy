@@ -111,7 +111,7 @@
 					<MenuItem Header="{x:Static properties:Resources.UILanguage_System}" IsCheckable="True" IsChecked="{Binding SessionSettings.CurrentCulture, Converter={StaticResource cultureSelectionConverter}, ConverterParameter={x:Null}}" />
 					<MenuItem Header="English" IsCheckable="True" IsChecked="{Binding SessionSettings.CurrentCulture, Converter={StaticResource cultureSelectionConverter}, ConverterParameter=en-US}" />
 					<MenuItem Header="简体中文" IsCheckable="True" IsChecked="{Binding SessionSettings.CurrentCulture, Converter={StaticResource cultureSelectionConverter}, ConverterParameter=zh-Hans}" />
-					<MenuItem Header="正體中文" IsCheckable="True" IsChecked="{Binding SessionSettings.CurrentCulture, Converter={StaticResource cultureSelectionConverter}, ConverterParameter=zh-Hant}" />
+					<MenuItem Header="繁體中文" IsCheckable="True" IsChecked="{Binding SessionSettings.CurrentCulture, Converter={StaticResource cultureSelectionConverter}, ConverterParameter=zh-Hant}" />
 				</MenuItem>
 			</MenuItem>
 			<MenuItem Header="{x:Static properties:Resources._Window}" />
