@@ -106,6 +106,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="$(ILSpyBuildPath)zh-Hant\ILSpy.resources.dll;$(ILSpyBuildPath)zh-Hant\ILSpy.ReadyToRun.Plugin.resources.dll;">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <VSIXSubPath>\ILSpy\zh-Hant\</VSIXSubPath>
+    </Content>
     <Content Include="$(ILSpyBuildPath)zh-Hans\ILSpy.resources.dll;$(ILSpyBuildPath)zh-Hans\ILSpy.ReadyToRun.Plugin.resources.dll;">
       <IncludeInVSIX>true</IncludeInVSIX>
       <VSIXSubPath>\ILSpy\zh-Hans\</VSIXSubPath>
@@ -125,6 +129,9 @@
     <None Include="ILSpyAddIn.vsct">
       <SubType>Designer</SubType>
     </None>
+    <None Include="ILSpyAddIn.zh-Hant.vsct">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="ILSpyAddIn.zh-Hans.vsct">
       <SubType>Designer</SubType>
     </None>
@@ -134,11 +141,20 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="zh-Hant\extension.vsixlangpack">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="zh-Hans\extension.vsixlangpack">
       <IncludeInVSIX>true</IncludeInVSIX>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <VSCTCompile Include="ILSpyAddIn.en-US.vsct">
+      <ResourceName>Menus.ctmenu</ResourceName>
+      <SubType>Designer</SubType>
+      <DependentUpon>ILSpyAddIn.vsct</DependentUpon>
+    </VSCTCompile>
+    <VSCTCompile Include="ILSpyAddIn.zh-Hant.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>
       <SubType>Designer</SubType>
       <DependentUpon>ILSpyAddIn.vsct</DependentUpon>
